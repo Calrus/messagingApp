@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "path/to/your/package/message";
+
+message Message{
+  string user_id = 1;
+  string content = 2;
+  string timestamp = 3;
+}
+
+service MessageService{
+  rpc SendMessage (MessageRequest) returns (MessageResponse);
+
+  rpc GetMessages (GetMessagesRequest) returns (GetMessagesResponse);
+
+}
+
+message MessageRequest {
+  Message message = 1;
+}
+
+message MessageResponse{
+  string status = 1;
+}
+
+message GetMessagesRequest{
+  string user_id = 1;
+}
+
+message GetMessagesResponse{
+  repeated Message messages = 1;
+}
